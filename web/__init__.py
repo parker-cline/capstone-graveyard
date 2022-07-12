@@ -1,6 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-app = Flask(__name__)
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-@app.route('/', methods=('GET', 'POST'))
-def index():
-    return render_template('index.html', ideas=["Do the thing.", "Do the other thing."])
+db = SQLAlchemy()
+
+
+def create_app():
+    """Construct the core application."""
+    app = Flask(__name__)
+
+    # Run the configurations to setup the URIs
+    # before initializing the db and other variables
+    app.config.from_object("config.Config")
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db.init_app(app)
+
+    with app.app_context():
+        # Imports
+        from . import serve
+
+        # Initialize Global db
+        db.create_all()
+
+        return app

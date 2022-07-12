@@ -11,14 +11,21 @@
 
 
 <body>
-    <h1>The Capstone Graveyard</h1>
-    <h2>Where great ideas go to die.</h2>
-
+    {% block content %}
+    <h1 class="title">{% block title %} The Capstone Graveyard {% endblock %}</h1>
+    <p>Where great ideas go to die.</p>
+    <br>
     <h1>Idea List</h1>
-    <ul>
-    {% for idea in ideas %}
-        <li>{{ idea }}</li>
-    {% endfor %}
-    </ul>
+    <div class="content">
+        {% for idea in ideas %}
+            <div class="student">
+                <p>{{ idea.title }}</p>
+                <p>{{ idea.description }}</p>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+    {% endblock %}
 </body>
+
 </html>
