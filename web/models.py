@@ -15,7 +15,8 @@ class Student(db.Model):
     telegram = db.Column(db.String(100))
     email = db.Column(db.String(100))
     password = db.Column(db.String(100))
-    
+
+'''
 class StudentIdea(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     student_id = db.Column(db.Integer, db.ForeignKey("students.id"))
@@ -23,7 +24,8 @@ class StudentIdea(db.Model):
     liked = db.Column(db.Boolean)
     students = db.relationship("Student", foreign_keys=student_id)
     ideas = db.relationship("Idea", foreign_keys=idea_id)
-    
+'''
+ 
 sammy = Idea(title="Sammy", description="Sammy is a cool guy.")
 parker = Idea(title="Parker", description="Parker is a strange guy.")
 

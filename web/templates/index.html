@@ -1,64 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>the Capstone Graveyard</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-</head>
+{% extends "base.html" %}
 
-
-<body>
-    {% block content %}
-    <h1 class="title">{% block title %} The Capstone Graveyard {% endblock %}</h1>
-    <p>Where great ideas go to die.</p>
-    <br>
-    <h1>Idea List</h1>
-    <div class="content">
-        {% for idea in ideas %}
-            <div class="student">
-                <p>{{ idea.title }}</p>
-                <p>{{ idea.description }}</p>
-            </div>
-            <br>
-        {% endfor %}
-    </div>
-    {% endblock %}
-    
-    <form method="POST" action="/">
-        {{ form.csrf_token }}
-        <p>
-            {{ form.title.label }}
-            {{ form.title(size=20) }}
-        </p>
-
-        {% if form.title.errors %}
-            <ul class="errors">
-                {% for error in form.title.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <p>
-            {{ form.description.label }}
-        </p>
-        {{ form.description(rows=10, cols=50) }}
-
-        {% if form.description.errors %}
-            <ul class="errors">
-                {% for error in form.description.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <p>
-            <input type="submit" value="Add Idea">
-        </p>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% block content %}
+<h1>Idea List</h1>
+    {% for idea in ideas %}
+        <div class="student">
+            <p>{{ idea.title }}</p>
+            <p>{{ idea.description }}</p>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}
