@@ -12,4 +12,5 @@ def index():
         new_idea = Idea(title=form.title.data, description=form.description.data)
         db.session.add(new_idea)
         db.session.commit()
+        return redirect(url_for("index"))
     return render_template("index.html", ideas=ideas_list, form=form)
