@@ -15,7 +15,8 @@ def index():
         return redirect(url_for("index"))
     return render_template("index.html", ideas=ideas_list, form=form)
 
-@app.route("/cards", methods=["GET"])
+import random
+@app.route("/cards", methods=["GET", "POST"])
 def cards():
-    ideas_list = Idea.query.all()
-    return render_template("cards.html", ideas=ideas_list)
+    random_idea = random.choice(Idea.query.all())
+    return render_template("cards.html", idea=random_idea)
