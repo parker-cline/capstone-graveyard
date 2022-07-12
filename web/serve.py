@@ -4,7 +4,7 @@ from flask import current_app as app
 from .forms import IdeaSubmitForm
 from . import db 
 
-@app.route("/", methods=("GET", "POST"))
+@app.route("/", methods=["GET", "POST"])
 def index():
     ideas_list = Idea.query.all()
     form = IdeaSubmitForm()
@@ -14,3 +14,8 @@ def index():
         db.session.commit()
         return redirect(url_for("index"))
     return render_template("index.html", ideas=ideas_list, form=form)
+
+@app.route("/cards", methods=["GET"])
+def cards():
+    ideas_list = Idea.query.all()
+    return render_template("cards.html", ideas=ideas_list)
