@@ -20,6 +20,7 @@ def create_app():
         from . import serve
 
         # Initialize Global db
+        db.drop_all()
         db.create_all()
 
         return app

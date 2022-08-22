@@ -1,16 +1,21 @@
-{% extends "base.html" %}
-{% block content %}
-<h1 class="title">{% block title %}Bring these ideas out from the dead.{% endblock %}</h1>
+{% extends "base.html" %} {% block content %}
+<h1 class="title">
+  {% block title %}Bring these ideas out from the dead.{% endblock %}
+</h1>
 <h1>Idea List</h1>
 <div class="content">
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{ idea.title }}</h5>
-            <p class="card-text">{{ idea.description }}</p>
-            <a href="#" class="card-link">Contact the creator.</a>
-        </div>
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">{{ idea.title }}</h5>
+      <p class="card-text">{{ idea.description }}</p>
+      <h3>Tags</h3>
+      {% for tag in idea.tags %}
+      <p>{{ tag }}</p>
+      {% endfor %}
+      <a href="#" class="card-link">Contact the creator.</a>
+    </div>
     <button>Check</button>
     <button>Reject</button>
-    </div>
+  </div>
 </div>
 {% endblock %}
